@@ -10,42 +10,27 @@ let validCount = 0;
 passports.forEach(passport => {
     const components = passport.split(' ').sort();
     if(components.length === 8){
-        if(validateBirthYear(components[0].split(':')[1])){
-            if(validateEyeColour(components[2].split(':')[1])){
-                if(validateExpirationYear(components[3].split(':')[1])){
-                    if(validateHairColour(components[4].split(':')[1])){
-                        if(validateHeight(components[5].split(':')[1])){
-                            if(validateIssueYear(components[6].split(':')[1])){
-                                if(validatePassID(components[7].split(':')[1])){
-                                    validCount++;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        components.splice(1,1);
+        runValidation(components);
     }
     else if(components.length === 7){
         if(!passport.match(/cid/)){
-            if(validateBirthYear(components[0].split(':')[1])){
-                if(validateEyeColour(components[1].split(':')[1])){
-                    if(validateExpirationYear(components[2].split(':')[1])){
-                        if(validateHairColour(components[3].split(':')[1])){
-                            if(validateHeight(components[4].split(':')[1])){
-                                if(validateIssueYear(components[5].split(':')[1])){
-                                    if(validatePassID(components[6].split(':')[1])){
-                                        validCount++;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            runValidation(components);
         }
     }
 });
+
+function runValidation(components){
+    if(validateBirthYear(components[0].split(':')[1]) &&
+        validateEyeColour(components[1].split(':')[1]) &&
+        validateExpirationYear(components[2].split(':')[1]) &&
+        validateHairColour(components[3].split(':')[1]) &&
+        validateHeight(components[4].split(':')[1]) &&
+        validateIssueYear(components[5].split(':')[1]) &&
+        validatePassID(components[6].split(':')[1])){
+            validCount++;
+    }
+}
 
 function validateBirthYear(birthYear){
     const year = parseInt(birthYear);
