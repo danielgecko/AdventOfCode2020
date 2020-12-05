@@ -55,7 +55,7 @@ function validateBirthYear(birthYear){
 }
 
 function validateEyeColour(eyeColour){
-    if(eyeColour === 'amb' || eyeColour === 'blu' || eyeColour === 'brn' || eyeColour === 'gry' || eyeColour === 'grn' || eyeColour === 'hzl' || eyeColour === 'oth'){
+    if(eyeColour.match(/^(amb|blu|brn|gry|grn|hzl|oth)$/)) {
         return true;
     }
 }
